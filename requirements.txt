@@ -4,5 +4,4 @@ dash_html_components
 yfinance
 pandas
 plotly
-datetime
 base64
