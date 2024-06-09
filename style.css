@@ -1,0 +1,46 @@
+body {
+    font-family: 'Orkney', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark theme background */
+    color: #e0e0e0;
+}
+
+.container {
+    width: 95%;
+    height: 50px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #1e1e1e; /* Dark theme background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+h1, h2 {
+    color: #f4f4f4;
+}
+
+#chart-container {
+    width: 97%;
+    height: 650px;
+    background-color: #1e1e1e; /* Dark theme background */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+canvas {
+    width: 100% !important;
+    height: 600px !important;
+}
+
+#next-day-prediction {
+    margin-top: 20px;
+    padding: 20px;
+    background: #333;
+    border-radius: 5px;
+}
+
+#suggestion {
+    font-size: 18px;
+    font-weight: bold;
+}
