@@ -24,6 +24,8 @@ h1, h2 {
     height: 650px;
     background-color: #1e1e1e; /* Dark theme background */
     padding: 20px;
+    position: relative;
+    font-family: 'Orkney', sans-serif;
 }
 
 canvas {
@@ -41,14 +43,22 @@ canvas {
 
 #suggestion {
     font-size: 18px;
-    font-weight: bold;
-    color: #ffcc00; /* Highlight the signal */
+    color: #58bfff; /* Highlight the signal */
 }
 
-#stats {
-    margin-top: 20px;
-    padding: 20px;
-    background: #333;
+#stats-box {
+    position: absolute;
+    bottom: 200px;
+    right: 100px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #ffcc00;
+    padding: 10px;
     border-radius: 5px;
-    line-height: 1.6;
+    color: #e0e0e0;
+    font-family: 'Orkney', sans-serif;
+    font-size: 14px;
+}
+
+#stats-box p {
+    margin: 5px 0;
 }

@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Load and display additional stats
         d3.csv('data/model_performance.csv').then(function(performanceData) {
             const performance = performanceData[0];
-            const mse = performance['MSE'];
-            const mae = performance['MAE'];
-            const r2 = performance['R2'];
+            const mse = parseFloat(performance['MSE']).toFixed(2);
+            const mae = parseFloat(performance['MAE']).toFixed(2);
+            const r2 = parseFloat(performance['R2']).toFixed(2);
 
             const chart = new Chart(ctx, {
                 type: 'line',
@@ -42,26 +42,25 @@ document.addEventListener('DOMContentLoaded', function() {
                             display: true,
                             title: {
                                 display: true,
-                                text: 'Date',
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 14,
-                                    family: 'Orkney'
+                                    size: 22,
+                                    family: 'Orkney',
                                 }
                             },
                             ticks: {
                                 autoSkip: true,
-                                maxTicksLimit: 20,
-                                maxRotation: 45,
-                                minRotation: 45,
+                                maxTicksLimit: 12,
+                                maxRotation: 90,
+                                minRotation: 0,
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 12,
-                                    family: 'Orkney'
+                                    size: 16,
+                                    family: 'Orkney',
                                 },
                                 callback: function(value, index, values) {
                                     const date = new Date(dates[index]);
-                                    const options = { year: 'numeric', month: 'short' };
+                                    const options = { year: 'numeric', month: 'short'};
                                     return date.toLocaleDateString('en-US', options);
                                 }
                             }
@@ -70,17 +69,17 @@ document.addEventListener('DOMContentLoaded', function() {
                             display: true,
                             title: {
                                 display: true,
-                                text: 'Price',
+                                text: 'Price (USD)',
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 14,
+                                    size: 20,
                                     family: 'Orkney'
                                 }
                             },
                             ticks: {
                                 color: '#e0e0e0',
                                 font: {
-                                    size: 12,
+                                    size: 16,
                                     family: 'Orkney'
                                 }
                             }
@@ -94,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             labels: {
                                 color: '#e0e0e0',
                                 font: {
+                                    size: 15,
                                     family: 'Orkney'
                                 }
                             }
@@ -104,15 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             bodyColor: '#e0e0e0',
                             borderColor: '#444',
                             borderWidth: 1
-                        },
-                        title: {
-                            display: false,
-                            text: `Model Performance - MSE: ${mse}, MAE: ${mae}, R²: ${r2}`,
-                            color: '#e0e0e0',
-                            font: {
-                                size: 16,
-                                family: 'Orkney'
-                            }
                         }
                     },
                     layout: {
@@ -128,6 +119,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Apply dark background to the chart area
             ctx.canvas.parentNode.style.backgroundColor = '#1e1e1e';
+
+            // Add stats box
+            const statsBox = document.createElement('div');
+            statsBox.id = 'stats-box';
+            statsBox.innerHTML = `
+                <h4>Model Performance Stats</h4>
+                <p>Mean Sq. Error: ${mse}</p>
+                <p>Mean Abs. Error: ${mae}</p>
+                <p>R²: ${r2}</p>
+            `;
+            ctx.canvas.parentNode.appendChild(statsBox);
         });
     });
 
@@ -142,20 +144,4 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.getElementById('suggestion').innerHTML = suggestionText;
     });
-
-    // // Load and display model performance stats
-    // d3.csv('data/model_performance.csv').then(function(data) {
-    //     const model_performance = data[0];
-    //     const formattedMSE = parseFloat(model_performance['MSE']).toFixed(2);
-    //     const formattedRMSE = parseFloat(model_performance['RMSE']).toFixed(2);
-    //     const formattedMAE = parseFloat(model_performance['MAE']).toFixed(2);
-    //     const formattedR2 = parseFloat(model_performance['R2']).toFixed(2);
-    //     const suggestionText = `
-    //         <p>MSE: ${formattedMSE}</p>
-    //         <p>RMSE: ${formattedRMSE}</p>
-    //         <p>MAE: ${formattedMAE}</p>
-    //         <p>R2: ${formattedR2}</p>
-    //     `;
-    //     document.getElementById('suggestion').innerHTML = suggestionText;
-    // });
 });
