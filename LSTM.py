@@ -97,6 +97,15 @@ print(f'RMSE: {rmse}')
 print(f'MAE: {mae}')
 print(f'R²: {r2}')
 
+# Save performance metrics to CSV
+performance_metrics = pd.DataFrame({
+    'MSE': [mse],
+    'RMSE': [rmse],
+    'MAE': [mae],
+    'R2': [r2]
+})
+performance_metrics.to_csv('data/model_performance.csv', index=False)
+
 # Predict future prices for the next month
 future_days = 30
 last_60_days = scaled_data[-60:]
